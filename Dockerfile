@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM tim03/gcc
 MAINTAINER Chen, Wenli <chenwenli@chenwenli.com>
 
 RUN apt-get -qq update && apt-get -qqy install --no-install-recommends \
