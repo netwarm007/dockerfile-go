@@ -1,7 +1,17 @@
-FROM tim03/gcc
+FROM tim03/build-deps
 LABEL maintainer Chen, Wenli <chenwenli@chenwenli.com>
 
-RUN apt-get -qq update && apt-get -qqy install --no-install-recommends \
-	golang-go \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* 
+RUN \
+ cd /tmp && \
+ wget https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz && \
+ tar xvzf go1.7.5.linux-amd64.tar.gz -C /usr/local
+
+RUN \
+ mkdir ~/go
+
+ENV GOROOT /usr/local/go
+ENV GOPATH /root/go
+ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+
+CMD go version
+
